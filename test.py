@@ -8,4 +8,4 @@ for pin in pins:
     
 while True:
     for pin in pins:
-        print k.input(pin)
+        print pin, k.input(pin)
