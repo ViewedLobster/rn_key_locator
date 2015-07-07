@@ -58,7 +58,7 @@ class KeyLocator:
                 self.doCurl(keyValue = pinKeyValue)
                 lastTime = time.time()
             else:
-                currentTime = 
+            
                 
             
             
@@ -94,7 +94,6 @@ class KeyLocator:
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message=kallekula&send_to_self=1")
         pycurl_connect.perform()
         
-mainObject = KeyLocator()
 
-mainObject.main()
+print t()
     
