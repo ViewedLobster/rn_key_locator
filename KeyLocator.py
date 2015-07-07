@@ -56,7 +56,6 @@ class KeyLocator:
             response = self.doCurl()
             
             time.sleep(0.2)
-                
             
                 
     
@@ -83,5 +82,7 @@ class KeyLocator:
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message=kallekula&send_to_self=1")
         pycurl_connect.perform()
         
-    doCurl()
+mainObject = KeyLocator()
+
+mainObject.main()
     
