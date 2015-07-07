@@ -8,9 +8,7 @@ import time
 import pycurl
 from StringIO import StringIO
 
-# Body is a string in some encoding.
-# In Python 2, we can print it without knowing what the encoding is.
-print(body)
+
 
 k.setmode(k.BCM)
 
@@ -35,6 +33,7 @@ def doCurl(keyValue = -1):
     c.close()
 
     body = buffer.getvalue()
+    
     print body
     
 
