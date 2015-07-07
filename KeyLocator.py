@@ -38,6 +38,8 @@ class KeyLocator:
     
         body = buffer.getvalue()
         
+        return jsonDecoder.decode(body)
+        
         
         
     
