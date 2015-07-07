@@ -96,5 +96,5 @@ class KeyLocator:
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message=kallekula&send_to_self=1")
         pycurl_connect.perform()
         
-
+print k.input(pinAlarm)
     
