@@ -18,8 +18,9 @@ i=0
 
 k.output(pinLed, 1)
 
-
+time.sleep(10000)
 def sendAction():
+    pass
     
 
 
@@ -47,6 +48,5 @@ def main():
             break
 
 
-main()
 
 
