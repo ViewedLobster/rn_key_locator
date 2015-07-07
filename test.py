@@ -9,3 +9,5 @@ for pin in pins:
 while True:
     for pin in pins:
         print pin, k.input(pin)
+        
+    time.sleep(2)
