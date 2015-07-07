@@ -76,8 +76,7 @@ class KeyLocator:
                 sentSMS = False
             
             if response:
-                
-            print response
+                print response
             
             
             lastState = pinKeyValue
