@@ -112,6 +112,5 @@ class KeyLocator:
 
     
 keyLocator = KeyLocator()
-
 keyLocator.main()
     
