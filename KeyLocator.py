@@ -14,19 +14,19 @@ class KeyLocator:
     
     def __init__(self):
 
-    self.jsonDecoder = json.JSONDecoder()
-    k.setmode(k.BCM)
+        self.jsonDecoder = json.JSONDecoder()
+        k.setmode(k.BCM)
+        
+        self.pinKey = 18
+        self.pinLed = 27
+        
+        k.setup(self.pinLed, k.OUT)
+        k.setup(self.pinKey, k.IN)
+        
+        k.output(self.pinLed, 1)
     
-    self.pinKey = 18
-    self.pinLed = 27
     
-    k.setup(self.pinLed, k.OUT)
-    k.setup(self.pinKey, k.IN)
-    
-    k.output(self.pinLed, 1)
-    
-    
-    def doCurl(self, keyValue = -1):
+    def doCurl(self, keyValue = -1, format = 'json'):
         buffer = StringIO()
         c = pycurl.Curl()
         address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
@@ -39,18 +39,17 @@ class KeyLocator:
         body = buffer.getvalue()
         
         return jsonDecoder.decode(body)
-        
-        
-        
     
     
-    def main():
+    def main(self):
         # TODO better name for variable
         pinKeyValue = 0
         done = False
         while not done:
             # TODO could prabably improve
             pinKeyValue = k.input(pinKey)
+            
+            response = self.doCurl(pinKeyValue)
             
                 
     
