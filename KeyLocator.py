@@ -30,13 +30,13 @@ class KeyLocator:
         buffer = StringIO()
         c = pycurl.Curl()
         address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
-        print address
         c.setopt(c.URL, address)
         c.setopt(c.WRITEFUNCTION, buffer.write)
         c.perform()
         c.close()
     
         body = buffer.getvalue()
+        print body
         
         return self.jsonDecoder.decode(body)
     
