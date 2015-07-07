@@ -4,6 +4,7 @@
 
 import RPi.GPIO as k
 import time
+import pycurl as pc
 
 GPIO.setmode(GPIO.BCM)
 
