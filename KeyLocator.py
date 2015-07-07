@@ -58,6 +58,7 @@ class KeyLocator:
                 self.doCurl(keyValue = pinKeyValue)
                 lastTime = time.time()
             else:
+                pass
             
                 
             
