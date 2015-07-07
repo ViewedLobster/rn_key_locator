@@ -31,7 +31,7 @@ class KeyLocator:
     def doCurl(self, keyValue = -1, doorValue = -1, messageType = "ping", format = 'json'):
         buffer = StringIO()
         c = pycurl.Curl()
-        address = 'http://rneventteknik.se/stage/io/key.php?key='+str(keyValue)+"&door="+str(doorValue)
+        address = 'http://rneventteknik.se/stage/io/key.php?key='+str(keyValue)+"&door="+str(doorValue)+"&msgType="+str(messageType)
         c.setopt(c.URL, address)
         c.setopt(c.WRITEFUNCTION, buffer.write)
         c.perform()
