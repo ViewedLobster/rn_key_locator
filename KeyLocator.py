@@ -99,7 +99,7 @@ class KeyLocator:
                 break
             """
     
-    def doSMS(self):
+    def doSMS(self, smsString):
         
         pycurl_connect = pycurl.Curl()
         pycurl_connect.setopt(pycurl.URL, 'https://api.getsupertext.com/v1/conversations/252585/messages')
