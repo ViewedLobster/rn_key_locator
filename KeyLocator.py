@@ -45,6 +45,7 @@ class KeyLocator:
         # TODO better name for variable
         pinKeyValue = 0
         done = False
+        lastState = None
         while not done:
             # TODO could prabably improve
             pinKeyValue = k.input(self.pinKey)
