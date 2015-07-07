@@ -61,6 +61,8 @@ class KeyLocator:
                 currentTime = time.time()
                 if currentTime - lastTime > 1800.:
                     self.doCurl(keyValue = pinKeyValue, changed = False)
+                    
+            
             
                 
             
@@ -97,6 +99,4 @@ class KeyLocator:
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message=kallekula&send_to_self=1")
         pycurl_connect.perform()
 
-a = KeyLocator()
-print k.input(a.pinAlarm)
     
