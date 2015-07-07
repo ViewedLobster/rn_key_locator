@@ -1,0 +1,2 @@
+@reboot python /usr/share/adafruit/webide/repositories/key-locator/KeyLocator.py &
+0 4 * * * /sbin/shutdown -r +5
