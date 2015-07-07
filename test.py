@@ -1,3 +1,11 @@
 import RPi.GPIO as k
 
-pins = [2,3,4,5,6,12,13,16,17,18,19,20,21,22,23,24,25,26
+pins = [2,3,4,5,6,12,13,16,17,18,19,20,21,22,23,24,25,26]
+
+
+for pin in pins:
+    k.setup(pin, k.IN)
+    
+while True:
+    for pin in pins:
+        print k.input(pin)
