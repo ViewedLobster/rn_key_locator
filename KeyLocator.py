@@ -21,6 +21,8 @@ class KeyLocator:
         self.pinLed = 27
         self.pinAlarm = 4
         
+        self.LEDState = 0
+        
         k.setup(self.pinLed, k.OUT)
         k.setup(self.pinKey, k.IN)
         k.setup(self.pinAlarm, k.IN)
@@ -106,6 +108,9 @@ class KeyLocator:
                                                   'application/json, text/javascript, */*; q=0.01'])
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message="+str(smsString)+"&send_to_self=1")
         pycurl_connect.perform()
+        
+    def switchLED(self):
+        
 
 
 
