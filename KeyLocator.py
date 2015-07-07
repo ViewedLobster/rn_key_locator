@@ -55,7 +55,6 @@ class KeyLocator:
             # TODO could prabably improve
             pinKeyValue = k.input(self.pinKey)
             pinDoorValue = k.input(self.pinAlarm)
-            print pinKeyValue
             if not lastState == pinKeyValue:
                 k.output(self.pinLed, pinKeyValue)
                 response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "changed")
@@ -76,7 +75,7 @@ class KeyLocator:
             if not pinDoorValue and sentSMS:
                 sentSMS = False
                 
-            
+            print response
             
                 
             
