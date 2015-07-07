@@ -59,7 +59,6 @@ class KeyLocator:
                 currentTime = time.time()
                 if currentTime - lastTime > 1800.:
                     self.doCurl(keyValue = pinKeyValue, changed = False)
-                pass
             
                 
             
