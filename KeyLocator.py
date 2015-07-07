@@ -57,12 +57,12 @@ class KeyLocator:
             pinDoorValue = k.input(self.pinAlarm)
             if not lastState == pinKeyValue:
                 k.output(self.pinLed, pinKeyValue)
-                self.doCurl(keyValue = pinKeyValue, changed = True)
+                self.doCurl(keyValue = pinKeyValue, messageType = "changed")
                 lastTime = time.time()
             else:
                 currentTime = time.time()
                 if currentTime - lastTime > 1800.:
-                    self.doCurl(keyValue = pinKeyValue, changed = False)
+                    self.doCurl(keyValue = pinKeyValue, changed = "ping")
                     
             
             if pinDoorValue and not pinKeyValue and not sentSMS:
