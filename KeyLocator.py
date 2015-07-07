@@ -67,5 +67,12 @@ class KeyLocator:
                 break
             """
     
+    def doSMS(self):
+        pycurl_connect = pycurl.Curl()
+        pycurl_connect.setopt(pycurl.URL, 'https://api.getsupertext.com/v1/conversations/252585/messages')
+        pycurl_connect.setopt(pycurl.HTTPHEADER, ['Auth-Token: 803647742c19c29a3e7bbbc0eddef9ad49ccfbd22c7d304bd929637036b3',
+                                                  'application/json, text/javascript, */*; q=0.01'])
+        pycurl_connect.setopt(pycurl.POSTFIELDS, "message=kallekula&send_to_self=1")
+        pycurl_connect.perform()
     doCurl()
     
