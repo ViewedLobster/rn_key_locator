@@ -60,6 +60,7 @@ class KeyLocator:
             pinDoorValue = k.input(self.pinAlarm)
             if not lastState == pinKeyValue:
                 k.output(self.pinLed, pinKeyValue)
+                self.switchLED(not pinKeyValue)
                 response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "changed")
                 lastTime = time.time()
             else:
@@ -109,7 +110,9 @@ class KeyLocator:
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message="+str(smsString)+"&send_to_self=1")
         pycurl_connect.perform()
         
-    def switchLED(self):
+    def switchLED(self, LEDState):
+        k.output(self.pinLed, LEDState)
+
         
 
 
