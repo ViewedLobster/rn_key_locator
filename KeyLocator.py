@@ -95,6 +95,7 @@ class KeyLocator:
                                                   'application/json, text/javascript, */*; q=0.01'])
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message=kallekula&send_to_self=1")
         pycurl_connect.perform()
-        
-print k.input(pinAlarm)
+
+a = KeyLocator()
+print k.input(a.pinAlarm)
     
