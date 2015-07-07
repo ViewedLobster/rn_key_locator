@@ -32,9 +32,10 @@ def main():
         # TODO could prabably improve
         pinKeyValue = k.input(pinKey)
         if pinKeyValue == 1:
+            pass
             
-        
-        
+
+        """
         print GPIO.input(button4)
         time.sleep(1)
         if GPIO.input(button4)==1:
@@ -46,7 +47,7 @@ def main():
         if GPIO.input(button0)==1:
             print "0"
             break
-
+        """
 
 
 
