@@ -27,6 +27,7 @@ def doCurl(keyValue = -1):
     buffer = StringIO()
     c = pycurl.Curl()
     address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
+    print address
     c.setopt(c.URL, address)
     c.setopt(c.WRITEDATA, buffer)
     c.perform()
