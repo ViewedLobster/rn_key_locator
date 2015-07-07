@@ -29,15 +29,14 @@ k.output(pinLed, 1)
 def doCurl(keyValue = -1):
     buffer = StringIO()
     c = pycurl.Curl()
-    c.setopt(c.URL, 'http://pycurl.sourceforge.net/')
+    address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
+    c.setopt(c.URL, address)
     c.setopt(c.WRITEDATA, buffer)
     c.perform()
     c.close()
 
     body = buffer.getvalue()
     print body
-
-    pass
     
 
 
@@ -48,11 +47,7 @@ def main():
     while not done:
         # TODO could prabably improve
         pinKeyValue = k.input(pinKey)
-        if pinKeyValue == 1:
-            buffer = StringIO()
-
-
-            pass
+        
             
 
         """
@@ -69,5 +64,5 @@ def main():
             break
         """
 
-
+doCurl()
 
