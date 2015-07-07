@@ -74,8 +74,11 @@ class KeyLocator:
             
             if not pinDoorValue and sentSMS:
                 sentSMS = False
+            
+            if response:
                 
             print response
+            
             
             lastState = pinKeyValue
             
