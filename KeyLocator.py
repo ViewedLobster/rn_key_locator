@@ -62,14 +62,14 @@ class KeyLocator:
             else:
                 currentTime = time.time()
                 if currentTime - lastTime > 1800.:
-                    self.doCurl(keyValue = pinKeyValue, messageType = "ping")
+                    self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "ping")
                     
             
             if pinDoorValue and not pinKeyValue and not sentSMS:
                 self.doSMS()
                 sentSMS = True
                 
-                self.doCurl(keyValue = pinKeyValue, messageType = "key_alarm_alert_emergency")
+                self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "key_alarm_alert_emergency")
             
             if not pinDoorValue and sentSMS:
                 sentSMS = False
