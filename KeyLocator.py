@@ -38,7 +38,7 @@ class KeyLocator:
     
         body = buffer.getvalue()
         
-        return jsonDecoder.decode(body)
+        return self.jsonDecoder.decode(body)
     
     
     def main(self):
