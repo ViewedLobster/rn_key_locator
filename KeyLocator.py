@@ -62,7 +62,7 @@ class KeyLocator:
                 lastTime = time.time()
             else:
                 currentTime = time.time()
-                if currentTime - lastTime > 5.:
+                if currentTime - lastTime > 3.:
                     response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "ping")
                     
             
