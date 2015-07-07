@@ -48,8 +48,13 @@ class KeyLocator:
         while not done:
             # TODO could prabably improve
             pinKeyValue = k.input(pinKey)
-            
-            response = self.doCurl(keyValue = pinKeyValue)
+            if pinKeyValue == 1:
+                k.output(self.pinLed, 1)
+            else:
+                k.output(self.pinLed, 1)
+                
+            response = self.doCurl()
+                
             
                 
     
