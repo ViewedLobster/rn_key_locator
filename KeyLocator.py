@@ -26,7 +26,7 @@ class KeyLocator:
         k.output(self.pinLed, 1)
     
     
-    def doCurl(self, keyValue = -1, format = 'json'):
+    def doCurl(self, keyValue = -1, changed = False format = 'json'):
         buffer = StringIO()
         c = pycurl.Curl()
         address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
@@ -57,7 +57,8 @@ class KeyLocator:
                 lastTime = time.time()
             else:
                 currentTime = time.time()
-                if currentTime - lastTime > 1800.
+                if currentTime - lastTime > 1800.:
+                    self.doCurl(keyValue)
                 pass
             
                 
