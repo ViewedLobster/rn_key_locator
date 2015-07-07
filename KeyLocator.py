@@ -26,7 +26,7 @@ k.output(pinLed, 1)
 def doCurl(keyValue = -1):
     buffer = StringIO()
     c = pycurl.Curl()
-    address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
+    address = 'http://rneventteknik.se/stage/io/key.php'
     print address
     c.setopt(c.URL, address)
     c.setopt(c.WRITEFUNCTION, buffer.write)
