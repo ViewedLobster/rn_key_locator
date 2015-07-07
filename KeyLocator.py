@@ -23,6 +23,7 @@ class KeyLocator:
         
         k.setup(self.pinLed, k.OUT)
         k.setup(self.pinKey, k.IN)
+        k.setup(self.pinAlarm, k.IN)
         
         k.output(self.pinLed, 1)
     
