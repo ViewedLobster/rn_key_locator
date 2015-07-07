@@ -1,2 +1,2 @@
 # key-locator
-hahaha
+locates key if it is already located
