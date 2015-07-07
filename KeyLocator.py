@@ -65,7 +65,8 @@ class KeyLocator:
                     self.doCurl(keyValue = pinKeyValue, changed = False)
                     
             
-            
+            if pinDoorValue and not pinKeyValue and not sentSMS:
+                self.doSMS()
                 
             
             
