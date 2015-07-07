@@ -47,7 +47,7 @@ class KeyLocator:
         done = False
         while not done:
             # TODO could prabably improve
-            pinKeyValue = k.input(pinKey)
+            pinKeyValue = k.input(self.pinKey)
             if pinKeyValue == 1:
                 k.output(self.pinLed, 1)
             else:
