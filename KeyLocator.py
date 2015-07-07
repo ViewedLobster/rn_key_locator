@@ -4,7 +4,6 @@
 
 import RPi.GPIO as k
 import time
-import pycurl as pc
 
 import pycurl
 from StringIO import StringIO
