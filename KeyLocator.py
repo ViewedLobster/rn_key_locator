@@ -54,6 +54,7 @@ class KeyLocator:
         while not done:
             # TODO could prabably improve
             pinKeyValue = k.input(self.pinKey)
+            doorValue = k.input(self.pinAlarm)
             if not lastState == pinKeyValue:
                 k.output(self.pinLed, pinKeyValue)
                 self.doCurl(keyValue = pinKeyValue, changed = True)
