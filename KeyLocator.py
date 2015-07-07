@@ -10,8 +10,6 @@ from StringIO import StringIO
 
 import json
 
-t = time.time
-
 class KeyLocator:
     
     def __init__(self):
@@ -96,5 +94,4 @@ class KeyLocator:
         pycurl_connect.perform()
         
 
-print t()
     
