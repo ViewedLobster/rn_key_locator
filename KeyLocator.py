@@ -49,6 +49,8 @@ class KeyLocator:
         while not done:
             # TODO could prabably improve
             pinKeyValue = k.input(self.pinKey)
+            
+            
             if pinKeyValue == 1:
                 k.output(self.pinLed, 1)
                 self.doSMS()
