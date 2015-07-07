@@ -6,7 +6,7 @@ import RPi.GPIO as k
 import time
 import pycurl as pc
 
-GPIO.setmode(GPIO.BCM)
+k.setmode(k.BCM)
 
 pinKey = 18
 pinLed = 27
