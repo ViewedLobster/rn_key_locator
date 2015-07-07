@@ -49,7 +49,7 @@ class KeyLocator:
         # TODO better name for variable
         pinKeyValue = 0
         done = False
-        lastState = 1
+        lastState = 0
         lastTime = time.time()
         sentSMS = False
         response = dict()
