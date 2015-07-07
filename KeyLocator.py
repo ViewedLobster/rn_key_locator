@@ -10,6 +10,8 @@ from StringIO import StringIO
 
 import json
 
+t = time.time
+
 class KeyLocator:
     
     def __init__(self):
@@ -46,16 +48,20 @@ class KeyLocator:
         pinKeyValue = 0
         done = False
         lastState = 1
+        lastTime = time.time()
+        
         while not done:
             # TODO could prabably improve
             pinKeyValue = k.input(self.pinKey)
-            
-            
-            if pinKeyValue == 1:
-                k.output(self.pinLed, 1)
-                self.doSMS()
+            if not lastState == pinKeyValue:
+                k.output(self.pinLed, pinKeyValue)
+                self.doCurl(keyValue = pinKeyValue)
+                lastTime = time.time()
             else:
-                k.output(self.pinLed, 1)
+                currentTime = 
+                
+            
+            
                 
             response = self.doCurl(pinKeyValue)
             
