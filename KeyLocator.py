@@ -50,9 +50,9 @@ class KeyLocator:
             pinKeyValue = k.input(self.pinKey)
             if pinKeyValue == 1:
                 k.output(self.pinLed, 1)
+                self.doSMS()
             else:
                 k.output(self.pinLed, 1)
-                self.doSMS()
                 
             response = self.doCurl(pinKeyValue)
             
