@@ -28,7 +28,7 @@ class KeyLocator:
         k.output(self.pinLed, 1)
     
     
-    def doCurl(self, keyValue = -1, changed = False, format = 'json'):
+    def doCurl(self, keyValue = -1, messageType, format = 'json'):
         buffer = StringIO()
         c = pycurl.Curl()
         address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
@@ -68,6 +68,8 @@ class KeyLocator:
             if pinDoorValue and not pinKeyValue and not sentSMS:
                 self.doSMS()
                 sentSMS = True
+                
+                self.doCurl(keyValue = pinKeyValue, 
             
             if not pinDoorValue and sentSMS:
                 sentSMS = False
