@@ -50,6 +50,7 @@ class KeyLocator:
         lastState = 1
         lastTime = time.time()
         sentSMS = False
+        response = dict()
         
         while not done:
             # TODO could prabably improve
@@ -75,8 +76,6 @@ class KeyLocator:
             if not pinDoorValue and sentSMS:
                 sentSMS = False
             
-            if response:
-                print response
             
             
             lastState = pinKeyValue
