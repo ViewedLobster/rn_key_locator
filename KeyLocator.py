@@ -49,7 +49,7 @@ class KeyLocator:
             # TODO could prabably improve
             pinKeyValue = k.input(pinKey)
             
-            response = self.doCurl(pinKeyValue)
+            response = self.doCurl(keyValue = pinKeyValue)
             
                 
     
