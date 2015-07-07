@@ -108,5 +108,10 @@ class KeyLocator:
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message=brandlarmet har inte gått&send_to_self=1")
         pycurl_connect.perform()
 
-keyLocator = KeyLocator(
+
+
+    
+keyLocator = KeyLocator()
+
+keyLocator.main()
     
