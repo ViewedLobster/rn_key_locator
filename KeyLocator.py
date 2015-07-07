@@ -16,6 +16,8 @@ k.setup(pinKey, k.IN)
 
 i=0
 
+k.output(pinLed, 1)
+
 
 def sendAction():
     
