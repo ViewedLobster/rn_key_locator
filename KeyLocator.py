@@ -57,7 +57,7 @@ class KeyLocator:
             response = self.doCurl(pinKeyValue)
             
             
-            time.sleep(0.1)
+            time.sleep(1)
             
                 
     
