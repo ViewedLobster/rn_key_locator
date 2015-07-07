@@ -57,7 +57,7 @@ class KeyLocator:
             pinDoorValue = k.input(self.pinAlarm)
             if not lastState == pinKeyValue:
                 k.output(self.pinLed, pinKeyValue)
-                self.doCurl(keyValue = pinKeyValue, messageType = "changed")
+                self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "changed")
                 lastTime = time.time()
             else:
                 currentTime = time.time()
