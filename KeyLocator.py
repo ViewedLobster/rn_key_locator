@@ -19,6 +19,7 @@ class KeyLocator:
         
         self.pinKey = 18
         self.pinLed = 27
+        self.pinAlarm = 4
         
         k.setup(self.pinLed, k.OUT)
         k.setup(self.pinKey, k.IN)
