@@ -29,7 +29,7 @@ def doCurl(keyValue = -1):
     address = 'http://rneventteknik.se/stage/io/key.php?key_status='+str(keyValue)
     print address
     c.setopt(c.URL, address)
-    c.setopt(c.WRITEDATA, buffer)
+    c.setopt(c.WRITEFUNCTION, buffer.write)
     c.perform()
     c.close()
 
