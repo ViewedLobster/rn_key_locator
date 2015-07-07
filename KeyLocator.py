@@ -77,7 +77,6 @@ class KeyLocator:
             
             
                 
-            response = self.doCurl(pinKeyValue)
             
             lastState = pinKeyValue
             
