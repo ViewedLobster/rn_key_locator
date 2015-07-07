@@ -64,5 +64,5 @@ def main():
             break
         """
 
-doCurl()
+doCurl(1)
 
