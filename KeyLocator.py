@@ -67,6 +67,7 @@ class KeyLocator:
             
             if pinDoorValue and not pinKeyValue and not sentSMS:
                 self.doSMS()
+                sentSMS = True
                 
             
             
