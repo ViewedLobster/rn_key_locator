@@ -49,6 +49,7 @@ class KeyLocator:
         done = False
         lastState = 1
         lastTime = time.time()
+        sentSMS = False
         
         while not done:
             # TODO could prabably improve
