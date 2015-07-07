@@ -52,8 +52,10 @@ class KeyLocator:
                 k.output(self.pinLed, 1)
             else:
                 k.output(self.pinLed, 1)
+                self.doSMS()
                 
             response = self.doCurl(pinKeyValue)
+            
             
             time.sleep(5)
             
