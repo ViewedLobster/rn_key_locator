@@ -77,8 +77,6 @@ class KeyLocator:
                 
             print response
             
-                
-            
             lastState = pinKeyValue
             
             time.sleep(1)
