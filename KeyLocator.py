@@ -41,7 +41,7 @@ class KeyLocator:
         c.close()
     
         body = buffer.getvalue()
-        print body
+        print "this is the body:", body
         
         return self.jsonDecoder.decode(body)
     
