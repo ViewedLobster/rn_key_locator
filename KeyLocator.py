@@ -20,7 +20,7 @@ class KeyLocator:
         
         self.pinKey = 18
         self.pinLed = 27
-        self.pinAlarm = 2
+        self.pinAlarm = 17
         
         self.LEDState = 0
         
