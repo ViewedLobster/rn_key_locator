@@ -13,6 +13,8 @@ import json
 class KeyLocator:
     
     def __init__(self):
+        
+        self.smsEnabled = True
 
         self.jsonDecoder = json.JSONDecoder()
         k.setmode(k.BCM)
