@@ -56,6 +56,7 @@ class KeyLocator:
         pinKeyValue = 0
         done = False
         lastState = 0
+        lastAlarm = 0
         lastTime = time.time()
         sentSMS = False
         response = dict()
@@ -75,12 +76,20 @@ class KeyLocator:
                     response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "ping")
                     lastTime = currentTime
             
-            if pinDoorValue and not pinKeyValue and not sentSMS:
+            if lastAlarm != pinDoorValue:
                 
-                response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "key_alarm_alert_emergency")
-                if self.smsEnabled:
-                    self.doSMS(response['feedback'])
-                sentSMS = True
+                if pinDoorValue:
+                    
+                    if not pinKeyValue and not sentSMS:
+                        
+                        response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "key_alarm_alert_emergency")
+                        if self.smsEnabled:
+                            self.doSMS(response['feedback'])
+                        sentSMS = True
+                else:
+                    response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "key_alarm_alert_emergency_averted")
+                
+                
             
             if not pinDoorValue and sentSMS:
                 sentSMS = False
