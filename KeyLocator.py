@@ -41,6 +41,8 @@ class KeyLocator:
         
         self.emergency = None
         
+        self.smsString = "Key is back and everything is back to normal!"
+        
         
         # Hahaha, much secure
         self.checksum = "67fgd83kdn3249f34nnjf27d2lmkcds"
@@ -68,6 +70,7 @@ class KeyLocator:
         self.lastKeyState = self.keyState
         self.lastDoorState = self.doorState
         
+        self.emergency = not self.keyState and self.doorState
         
         done = False
         
@@ -75,15 +78,19 @@ class KeyLocator:
             self.keyState = k.input(self.keyPin)
             self.doorState = k.input(self.doorPin)
             
-            if self.keyState == 0 and self.doorState == 1:
-                self.emergency = True
+            
             
             k.output(self.ledPin, not self.keyState)
             if self.keyState != self.lastKeyState or self.doorState != self.lastDoorState:
                 
                 response = self.doCurl(self.keyState, self.doorState, "changed")
-                
-                if 
+                if self.emergency and self.keyState and not self.doorState:
+                    self.emergency = False
+                    
+                    # send back to normal message
+                    self.doSMS()
+                        
+
                 
                 
                 
