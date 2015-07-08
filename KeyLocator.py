@@ -49,6 +49,7 @@ class KeyLocator:
     
         body = buffer.getvalue()
         print body
+        self.lastTime = time.time()
         
         return self.jsonDecoder.decode(body)
     
@@ -59,7 +60,7 @@ class KeyLocator:
         done = False
         lastState = 0
         lastAlarm = 0
-        lastTime = time.time()
+        self.lastTime = time.time()
         sentSMS = False
         response = dict()
         
