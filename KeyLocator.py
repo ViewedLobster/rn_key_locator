@@ -55,7 +55,8 @@ class KeyLocator:
     
     def main(self):
         # TODO better name for variable
-        pinKeyValue = 0
+        pinKeyValue = k.input(self.pinKey)
+        pinDoorValue = k.input(self.pinAlarm)
         done = False
         lastState = 0
         lastAlarm = 0
