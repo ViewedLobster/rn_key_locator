@@ -15,6 +15,8 @@ class KeyLocator:
     def __init__(self):
         
         self.smsEnabled = True
+        
+        self.lastTime = None
 
         self.jsonDecoder = json.JSONDecoder()
         k.setmode(k.BCM)
@@ -83,6 +85,7 @@ class KeyLocator:
                     if not pinKeyValue and not sentSMS:
                         
                         response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "key_alarm_alert_emergency")
+                        
                         if self.smsEnabled:
                             self.doSMS(response['feedback'])
                         sentSMS = True
