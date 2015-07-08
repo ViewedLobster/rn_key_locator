@@ -48,7 +48,6 @@ class KeyLocator:
         c.close()
     
         body = buffer.getvalue()
-        print body
         self.lastTime = time.time()
         
         return self.jsonDecoder.decode(body)
