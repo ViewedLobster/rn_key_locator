@@ -41,7 +41,7 @@ class KeyLocator:
         
         self.emergency = None
         
-        self.smsString = "Key is back and everything is back to normal!"
+        self.smsGood = "Key is back and everything is back to normal!"
         
         
         # Hahaha, much secure
@@ -85,10 +85,12 @@ class KeyLocator:
                 
                 response = self.doCurl(self.keyState, self.doorState, "changed")
                 if self.emergency and self.keyState and not self.doorState:
+                    
                     self.emergency = False
                     
                     # send back to normal message
-                    self.doSMS()
+                    self.doSMS(self.smsGood)
+                    
                         
 
                 
