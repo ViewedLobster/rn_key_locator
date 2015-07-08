@@ -42,6 +42,7 @@ class KeyLocator:
         self.emergency = None
         
         self.smsGood = "Key is back and everything is back to normal!"
+        self.smsBad = "Key alarm is set and key is not in place! Call the army! I guess someones buying bulle for next Tuesday."
         
         
         # Hahaha, much secure
@@ -94,7 +95,6 @@ class KeyLocator:
                 elif not self.keyState and self.doorState:
                     self.emergency = True
                     self.doSMS(self.smsBad)
-
                 
                 
                 
