@@ -59,9 +59,8 @@ class KeyLocator:
         done = False
         lastState = 0
         lastAlarm = 0
-        self.lastTime = time.time()
         sentSMS = False
-        response = dict()
+        response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "ping")
         
         while not done:
             # TODO could prabably improve
@@ -71,11 +70,8 @@ class KeyLocator:
                 k.output(self.pinLed, pinKeyValue)
                 self.switchLED(0 if pinKeyValue else 1)
                 response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "changed")
-            else:
-                currentTime = time.time()
-                if currentTime - lastTime > 3600.:
-                    response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "ping")
-                    lastTime = currentTime
+                
+                
             
             if lastAlarm != pinDoorValue:
                 
