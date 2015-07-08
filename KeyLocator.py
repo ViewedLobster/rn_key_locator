@@ -27,9 +27,9 @@ class KeyLocator:
         
         self.LEDState = 0
         
-        k.setup(self.pinLed, k.OUT)
-        k.setup(self.pinKey, k.IN)
-        k.setup(self.pinDoor, k.IN)
+        k.setup(self.ledPin, k.OUT)
+        k.setup(self.keyPin, k.IN)
+        k.setup(self.doorPin, k.IN)
         
         k.output(self.pinLed, 1)
         
