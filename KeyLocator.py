@@ -91,7 +91,9 @@ class KeyLocator:
                     # send back to normal message
                     self.doSMS(self.smsGood)
                     
-                        
+                elif not self.keyState and self.doorState:
+                    self.emergency = True
+                    self.doSMS(self.smsBad)
 
                 
                 
