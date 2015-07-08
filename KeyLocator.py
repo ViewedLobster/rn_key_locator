@@ -119,7 +119,5 @@ class KeyLocator:
 
     
 keyLocator = KeyLocator()
-while True:
-    print k.input(keyLocator.pinAlarm)
-    time.sleep(1)
+keyLocator.main()
     
