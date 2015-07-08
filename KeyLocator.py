@@ -78,7 +78,8 @@ class KeyLocator:
             if pinDoorValue and not pinKeyValue and not sentSMS:
                 
                 response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "key_alarm_alert_emergency")
-                #self.doSMS(response['feedback'])
+                if self.smsEnabled:
+                    self.doSMS(response['feedback'])
                 sentSMS = True
             
             if not pinDoorValue and sentSMS:
