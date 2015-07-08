@@ -28,9 +28,10 @@ class KeyLocator:
         k.setup(self.pinAlarm, k.IN)
         
         k.output(self.pinLed, 1)
-
-		# Hahaha, much secure
-		self.checksum = "67fgd83kdn3249f34nnjf27d2lmkcds"
+        
+        
+        # Hahaha, much secure
+        self.checksum = "67fgd83kdn3249f34nnjf27d2lmkcds"
     
     
     def doCurl(self, keyValue = -1, doorValue = -1, messageType = "ping", format = 'json'):
