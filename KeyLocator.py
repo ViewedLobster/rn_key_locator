@@ -71,7 +71,6 @@ class KeyLocator:
                 k.output(self.pinLed, pinKeyValue)
                 self.switchLED(0 if pinKeyValue else 1)
                 response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "changed")
-                lastTime = time.time()
             else:
                 currentTime = time.time()
                 if currentTime - lastTime > 3600.:
