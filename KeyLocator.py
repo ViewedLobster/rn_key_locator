@@ -94,6 +94,11 @@ class KeyLocator:
                 sentSMS = False
             
             
+            currentTime = time.time()
+            
+            if currentTime - self.lastTime > 3600:
+                response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "ping")
+            
             
             lastState = pinKeyValue
             
