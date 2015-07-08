@@ -31,7 +31,6 @@ class KeyLocator:
         k.setup(self.keyPin, k.IN)
         k.setup(self.doorPin, k.IN)
         
-        k.output(self.pinLed, 1)
         
         self.keyState = None
         self.doorState = None
