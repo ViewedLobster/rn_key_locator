@@ -15,6 +15,7 @@ class KeyLocator:
     def __init__(self):
 
         self.jsonDecoder = json.JSONDecoder()
+        
         k.setmode(k.BCM)
         
         self.pinKey = 18
