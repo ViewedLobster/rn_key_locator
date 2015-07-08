@@ -49,10 +49,10 @@ class KeyLocator:
         self.checksum = "67fgd83kdn3249f34nnjf27d2lmkcds"
     
     
-    def doCurl(self, keyValue = -1, doorValue = -1, messageType = "ping", format = 'json'):
+    def doCurl(self, keyValue = -1, doorValue = -1, emergencyState = -1, messageType = "ping", format = 'json'):
         buffer = StringIO()
         c = pycurl.Curl()
-        address = 'http://rneventteknik.se/stage/io/key.php?key='+str(keyValue)+"&door="+str(doorValue)+"&msgType="+str(messageType)+"&format=" + str(format)+ "&checksum=" + self.checksum
+        address = 'http://rneventteknik.se/stage/io/key.php?key='+str(keyValue)+"&door="+str(doorValue)+"&emergency="+str(int(emergencyState))+"&msgType="+str(messageType)+"&format=" + str(format)+ "&checksum=" + self.checksum
         c.setopt(c.URL, address)
         c.setopt(c.WRITEFUNCTION, buffer.write)
         c.perform()
@@ -84,7 +84,6 @@ class KeyLocator:
             k.output(self.ledPin, not self.keyState)
             if self.keyState != self.lastKeyState or self.doorState != self.lastDoorState:
                 
-                response = self.doCurl(self.keyState, self.doorState, "changed")
                 if self.emergency and self.keyState and not self.doorState:
                     
                     self.emergency = False
@@ -95,6 +94,8 @@ class KeyLocator:
                 elif not self.keyState and self.doorState:
                     self.emergency = True
                     self.doSMS(self.smsBad)
+                    
+                response = self.doCurl(self.keyState, self.doorState, self.emergency, "changed")
                 
                 
                 
