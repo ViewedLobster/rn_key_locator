@@ -68,7 +68,7 @@ class KeyLocator:
                 lastTime = time.time()
             else:
                 currentTime = time.time()
-                if currentTime - lastTime > 5.:
+                if currentTime - lastTime > 10.:
                     response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "ping")
                     lastTime = currentTime
             
@@ -123,5 +123,7 @@ class KeyLocator:
 
     
 keyLocator = KeyLocator()
-keyLocator.main()
+while True:
+    print k.input(keyLocator.pinAlarm)
+    time.sleep(1)
     
