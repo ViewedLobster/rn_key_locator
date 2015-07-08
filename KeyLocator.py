@@ -21,17 +21,25 @@ class KeyLocator:
         self.jsonDecoder = json.JSONDecoder()
         k.setmode(k.BCM)
         
-        self.pinKey = 18
-        self.pinLed = 27
-        self.pinAlarm = 17
+        self.keyPin = 18
+        self.ledPin = 27
+        self.doorPin = 17
         
         self.LEDState = 0
         
         k.setup(self.pinLed, k.OUT)
         k.setup(self.pinKey, k.IN)
-        k.setup(self.pinAlarm, k.IN)
+        k.setup(self.pinDoor, k.IN)
         
         k.output(self.pinLed, 1)
+        
+        self.keyState = None
+        self.doorState = None
+        
+        self.lastKeyState = None
+        self.lastDoorState = None
+        
+        self.emergency = None
         
         
         # Hahaha, much secure
@@ -54,6 +62,79 @@ class KeyLocator:
     
     
     def main(self):
+        
+        self.keyState = k.input(self.keyPin)
+        self.doorState = k.input(self.doorPin)
+        self.lastKeyState = self.keyState
+        self.lastDoorState = self.doorState
+        
+        
+        done = False
+        
+        while not done:
+            self.keyState = k.input(self.keyPin)
+            self.doorState = k.input(self.doorPin)
+            
+            if self.keyState == 0 and self.doorState == 1:
+                self.emergency = True
+            
+            k.output(self.ledPin, not self.keyState)
+            if self.keyState != self.lastKeyState or self.doorState != self.lastDoorState:
+                
+                response = self.doCurl(self.keyState, self.doorState, "changed")
+                
+                if 
+                
+                
+                
+            
+            
+            
+            
+            
+            
+            self.lastKeyState = self.keyState
+            self.lastDoorState = self.doorState
+            self.lastTime = time.time()
+                
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         # TODO better name for variable
         pinKeyValue = k.input(self.pinKey)
         pinDoorValue = k.input(self.pinAlarm)
@@ -71,6 +152,10 @@ class KeyLocator:
                 k.output(self.pinLed, pinKeyValue)
                 self.switchLED(0 if pinKeyValue else 1)
                 response = self.doCurl(keyValue = pinKeyValue, doorValue = pinDoorValue, messageType = "changed")
+                
+                
+                
+                
                 
                 
             
@@ -101,6 +186,7 @@ class KeyLocator:
             
             
             lastState = pinKeyValue
+            lastAlarm = pinDoorValue
             
             time.sleep(1)
             
