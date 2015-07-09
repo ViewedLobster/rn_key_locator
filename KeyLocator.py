@@ -107,13 +107,16 @@ class KeyLocator:
                     
                 elif not self.keyState and self.doorState:
                     self.emergency = True
+                    
+                    
+                    """
                     f = open(self.emergencyFile, "r")
                     string = f.readline()
                     f.close()
                     if string == "":
                         f = open(self.emergencyFile, "w")
                         f.write(str(time.time()))
-                    
+                    """
                     
                     self.doSMS(self.smsBad)
                     
