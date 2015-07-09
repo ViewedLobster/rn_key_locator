@@ -39,9 +39,11 @@ class KeyLocator:
         self.lastDoorState = None
         
         self.emergency = None
+        self.emergencyFile = "emergencyTime.txt"
         
-        self.smsGood = "Key is back and everything is back to normal!"
-        self.smsBad = "Key alarm is set and key is not in place! Call the army! I guess someones buying bulle for next Tuesday."
+        self.smsGood = "Key is back and everything is back to normal! According to our calculations you owe us "
+        self.smsGoodPt2 = " bulle"
+        self.smsBad = "Extreme emergency! Alarm is set and key is not in place! Call proggo! I guess someone is buying bulle for next Tuesday."
         
         
         # Hahaha, much secure
@@ -87,11 +89,32 @@ class KeyLocator:
                     
                     self.emergency = False
                     
+                    """
+                    f = open(self.emergencyFile, "r")
+                    string = f.readline()
+                    emergencyTime = float(string)
+                    timeDiff = time.time()-emergencyTime
+                    
+                    bulle = round(timeDiff/43200.)
+                    
+                    f = open(self.emergencyFile, "w")
+                    f.write("")
+                    """
                     # send back to normal message
                     self.doSMS(self.smsGood)
                     
+                    
+                    
                 elif not self.keyState and self.doorState:
                     self.emergency = True
+                    f = open(self.emergencyFile, "r")
+                    string = f.readline()
+                    f.close()
+                    if string == "":
+                        f = open(self.emergencyFile, "w")
+                        f.write(str(time.time()))
+                    
+                    
                     self.doSMS(self.smsBad)
                     
                 response = self.doCurl(self.keyState, self.doorState, self.emergency, "changed")
