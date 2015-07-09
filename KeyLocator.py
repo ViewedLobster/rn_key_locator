@@ -124,7 +124,7 @@ class KeyLocator:
     def doSMS(self, smsString):
         
         pycurl_connect = pycurl.Curl()
-        pycurl_connect.setopt(pycurl.URL, 'https://api.getsupertext.com/v1/conversations/252585/messages')
+        pycurl_connect.setopt(pycurl.URL, 'https://api.getsupertext.com/v1/conversations/44393/messages')
         # rn-eventteknik: 44393
         # test-api: 252585
 		# send as Magnus: 0a6f4ffcc6322271ecc6b1ddb90d83720700acc69bd61b7f96e248f7765d
