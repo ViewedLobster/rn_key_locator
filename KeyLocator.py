@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This optimized piece of code is possible thanks to:
 # pycurl
 # RPi.GPIO
@@ -41,9 +42,9 @@ class KeyLocator:
         self.emergency = None
         self.emergencyFile = "emergencyTime.txt"
         
-        self.smsGood = "Key is back and everything is back to normal! According to our calculations you owe us "
+        self.smsGood = "Källarnyckeln är åter på sin plats. Enligt min formel är du skyldig  "
         self.smsGoodPt2 = " bulle"
-        self.smsBad = "Extreme emergency! Alarm is set and key is not in place! Call proggo! I guess someone is buying bulle for next Tuesday."
+        self.smsBad = "Källarnyckeln!! Lämna tilbaka den innan du går hem. Antar att någon köper bulle till nästa tisdag"
         
         
         # Hahaha, much secure
