@@ -97,7 +97,7 @@ class KeyLocator:
                     emergencyTime = float(string)
                     timeDiff = time.time()-emergencyTime
                     
-                    bulle = round(timeDiff/43200.)
+                    bulle = round(timeDiff/1) #43200.)
                     
                     f = open(self.emergencyFile, "w")
                     f.write("None")
