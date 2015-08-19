@@ -42,9 +42,9 @@ class KeyLocator:
         self.emergency = None
         self.emergencyFile = "emergencyTime.txt"
         
-        self.smsGood = "Källarnyckeln är åter på sin plats. Enligt min formel är du skyldig  "
+        self.smsGood = "Källarnyckeln är åter på sin plats. Enligt min formel är du skyldig "
         self.smsGoodPt2 = " bulle"
-        self.smsBad = "Källarnyckeln!! Lämna tilbaka den innan du går hem. Antar att någon köper bulle till nästa tisdag"
+        self.smsBad = "Källarnyckeln!! Lämna tillbaka den innan du går hem. Annars antar jag att någon köper bulle till nästa tisdag..."
         
         
         # Hahaha, much secure
@@ -94,17 +94,19 @@ class KeyLocator:
                     f = open(self.emergencyFile, "r")
                     string = f.readline()
                     f.close()
-                    emergencyTime = float(string)
-                    timeDiff = time.time()-emergencyTime
+                    if string != "None":
+                        emergencyTime = float(string)
+                        timeDiff = time.time()-emergencyTime
                     
-                    bulle = round(timeDiff/1) #43200.)
+                        bulle = round(timeDiff/1) #43200.)
                     
                     f = open(self.emergencyFile, "w")
                     f.write("None")
                     f.close()
                     
                     # send back to normal message
-                    self.doSMS(self.smsGood)
+                    if string != "None":
+                        self.doSMS(self.smsGood + str(bulle) + self.smsGoodPt2)
                     
                     
                     
