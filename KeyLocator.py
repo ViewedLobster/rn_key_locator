@@ -90,17 +90,19 @@ class KeyLocator:
                     
                     self.emergency = False
                     
-                    """
+                    
                     f = open(self.emergencyFile, "r")
                     string = f.readline()
+                    f.close()
                     emergencyTime = float(string)
                     timeDiff = time.time()-emergencyTime
                     
                     bulle = round(timeDiff/43200.)
                     
                     f = open(self.emergencyFile, "w")
-                    f.write("")
-                    """
+                    f.write("None")
+                    f.close()
+                    
                     # send back to normal message
                     self.doSMS(self.smsGood)
                     
@@ -110,16 +112,15 @@ class KeyLocator:
                     self.emergency = True
                     
                     
-                    """
+                    
                     f = open(self.emergencyFile, "r")
                     string = f.readline()
                     f.close()
-                    if string == "":
+                    if string == "None":
                         f = open(self.emergencyFile, "w")
                         f.write(str(time.time()))
-                    """
-                    
-                    self.doSMS(self.smsBad)
+                        self.doSMS(self.smsBad)
+                        f.close()
                     
                 response = self.doCurl(self.keyState, self.doorState, self.emergency, "changed")
                 
