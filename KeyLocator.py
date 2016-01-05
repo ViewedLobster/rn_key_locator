@@ -2,6 +2,8 @@
 # This optimized piece of code is possible thanks to:
 # pycurl
 # RPi.GPIO
+# crontab -e
+#@reboot sudo python /home/pi/code/key-locator/KeyLocator.py >> /home/pi/code/key-locator/key.log 2>&1
 
 import RPi.GPIO as k
 import time
