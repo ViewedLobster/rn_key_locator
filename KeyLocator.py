@@ -12,6 +12,7 @@ import pycurl
 from StringIO import StringIO
 
 import json
+import logging
 
 class KeyLocator:
     
@@ -59,7 +60,10 @@ class KeyLocator:
         address = 'http://rneventteknik.se/stage/io/key.php?key='+str(keyValue)+"&door="+str(doorValue)+"&emergency="+str(int(emergencyState))+"&msgType="+str(messageType)+"&format=" + str(format)+ "&checksum=" + self.checksum
         c.setopt(c.URL, address)
         c.setopt(c.WRITEFUNCTION, buffer.write)
-        c.perform()
+        try:
+            c.perform()
+        except Exception as e:
+            logging.error(e.message)
         c.close()
     
         body = buffer.getvalue()
@@ -165,11 +169,16 @@ class KeyLocator:
         pycurl_connect.setopt(pycurl.HTTPHEADER, ['Auth-Token: 6cd627bf1b1c7aa9d4a980b73dac83984d7b70b5eaaaf3212c1d968cbec4',
                                                   'application/json, text/javascript, */*; q=0.01'])
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message="+str(smsString)+"&send_to_self=1")
-        pycurl_connect.perform()
-        
+        try:
+            pycurl_connect.perform()
+        except Exception as e:
+            logging.error(e.message)
+        pycurl_connect.close()
+       
     def switchLED(self, LEDState):
         k.output(self.pinLed, LEDState)
 
+logging.basicConfig(filename="keydefence.log", level=logging.DEBUG)
 
 keyLocator = KeyLocator()
 keyLocator.main()
