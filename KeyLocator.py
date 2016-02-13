@@ -132,12 +132,12 @@ class KeyLocator:
                     f = open(self.emergencyFile, "w")
                     f.write("None")
                     f.close()
-                    """
                     
                     # send back to normal message
                     if string != "None":
                         self.doSMS(self.smsGood + str(bulle) + self.smsGoodPt2)
                     
+                    """
                     
                     
                 elif not self.keyState and self.doorState:
