@@ -186,7 +186,9 @@ class KeyLocator:
 		# send as Johan: 803647742c19c29a3e7bbbc0eddef9ad49ccfbd22c7d304bd929637036b3
         #send as: Rn Key Defence System 6cd627bf1b1c7aa9d4a980b73dac83984d7b70b5eaaaf3212c1d968cbec4 0763035548
         pycurl_connect.setopt(pycurl.HTTPHEADER, ['Auth-Token: 803647742c19c29a3e7bbbc0eddef9ad49ccfbd22c7d304bd929637036b3',
-                                                  'application/json, text/javascript, */*; q=0.01'])
+                                                  'application/json, text/javascript, */*; q=0.01',
+                                                  'Client-Token: web_w3',
+                                                  'Client-Version: 1'])
         pycurl_connect.setopt(pycurl.POSTFIELDS, "message="+str(smsString)+"&send_to_self=1")
         try:
             pycurl_connect.perform()
