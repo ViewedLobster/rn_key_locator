@@ -62,7 +62,7 @@ class KeyLocator:
         # Hahaha, much secure
         self.checksum = "67fgd83kdn3249f34nnjf27d2lmkcds"
     
-    def generateMessage():
+    def generateMessage(self):
         message = "Kom tillbaka med nyckeln, om den ej är tillbaka inom 10 minuter blir påföljden ett vite i form av "
         i = random.randrange(len(self.amountList));
         message = message + self.amountList[i]
