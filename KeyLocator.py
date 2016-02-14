@@ -72,6 +72,8 @@ class KeyLocator:
 
         i = random.randrange(len(self.explanation))
         message = message + " " + self.explanation[i]
+
+        return message
     
     def doCurl(self, keyValue = -1, doorValue = -1, emergencyState = -1, messageType = "ping", format = 'json'):
         buffer = StringIO()
