@@ -43,7 +43,7 @@ class KeyLocator:
         self.amountList = ["skälig mängd", "fyra dagsböter", "fem fotbollplaner", "fyrtio tusen miljarder", "33 cl", "1 kg"]
         
         self.explanation = ["Straffet bestäms utifrån den misstänktes beräknade årsinkomst vid tidpunkten när straffet skall bestämmas. Med årsinkomst avses inkomst före skatt med avdrag för kostnader för inkomstens förvärvande. Som inkomst räknas också mer kontinuerligt utgående ersättning eller bidrag till den misstänkte. Det gäller till exempel arbetslöshetsersättning, ekonomiskt bistånd, studiebidrag, bostadsbidrag och underhållsbidrag.", 
-                "Den misstänktes egna uppgifter om sina ekonomiska förhållanden bör i allmänhet godtas. En kontroll bör dock göras om det finns anledning anta att uppgifterna är felaktiga eller ofullständiga i en omfattning som kan antas påverka straffbeloppet.",
+                "Den misstänktes egna uppgifter om sina ekonomiska förhållanden bör i allmänhet godtas. En kontroll bör dock göras om det finns anledning att anta att uppgifterna är felaktiga eller ofullständiga i en omfattning som kan antas påverka straffbeloppet.",
                 "Straffets villkor varierar mellan olika nämnder. Anstalten RN ger möjlighet till arbete, utbildning, behandlingsprogram och annan verksamhet. Straff infördes hos RN under 1800-talet och anses bland annat minska risken för fängelsevåldtäkter"]
         
         self.keyState = None
@@ -66,10 +66,10 @@ class KeyLocator:
     def generateMessage(self):
         message = "Kom tillbaka med nyckeln, om den ej är tillbaka inom 10 minuter blir påföljden ett vite i form av "
         i = random.randrange(len(self.amountList));
-        message = message + self.amountList[i] + "."
+        message = message + self.amountList[i]
 
         i = random.randrange(len(self.goodsList))
-        message = message + " " + self.goodsList[i]
+        message = message + " " + self.goodsList[i] + "."
 
         i = random.randrange(len(self.explanation))
         message = message + " " + self.explanation[i]
