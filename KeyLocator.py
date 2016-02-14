@@ -119,7 +119,7 @@ class KeyLocator:
             self.doorState = k.input(self.doorPin)
             
             if self.emergency and not self.emergencyTime == None:
-                if time.time() - self.emergencyTime > 10:
+                if time.time() - self.emergencyTime > 600:
                     message = "Tidsfristen har nu gått ut, och domen har vunnit laga kraft. Kom tillbaka med vitet eller inte alls. Domen kan ej överklagas."
                     self.doSMS(message)
                     self.emergencyTime = None
@@ -162,7 +162,7 @@ class KeyLocator:
                     """
                     
                     
-                elif not self.keyState and not self.doorState:
+                elif not self.keyState and self.doorState:
                     self.emergency = True
                     
                     # If door locked and key gone fishing
@@ -202,13 +202,13 @@ class KeyLocator:
     def doSMS(self, smsString):
         
         pycurl_connect = pycurl.Curl()
-        pycurl_connect.setopt(pycurl.URL, 'https://api.getsupertext.com/v1/conversations/252585/messages')
+        pycurl_connect.setopt(pycurl.URL, 'https://api.getsupertext.com/v1/conversations/44393/messages')
         # rn-eventteknik: 44393
         # test-api: 252585
 		# send as Magnus: 0a6f4ffcc6322271ecc6b1ddb90d83720700acc69bd61b7f96e248f7765d
 		# send as Johan: 803647742c19c29a3e7bbbc0eddef9ad49ccfbd22c7d304bd929637036b3
         #send as: Rn Key Defence System 6cd627bf1b1c7aa9d4a980b73dac83984d7b70b5eaaaf3212c1d968cbec4 0763035548
-        pycurl_connect.setopt(pycurl.HTTPHEADER, ['Auth-Token: 803647742c19c29a3e7bbbc0eddef9ad49ccfbd22c7d304bd929637036b3',
+        pycurl_connect.setopt(pycurl.HTTPHEADER, ['Auth-Token: 6cd627bf1b1c7aa9d4a980b73dac83984d7b70b5eaaaf3212c1d968cbec4',
                                                   'application/json, text/javascript, */*; q=0.01',
                                                   'Client-Token: web_v3',
                                                   'Client-Version: 1'])
