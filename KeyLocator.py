@@ -107,10 +107,12 @@ class KeyLocator:
         
         done = False
 
+        """
         theMessage = self.generateMessage()
         print theMessage
         self.doSMS(self.generateMessage())
         print "\nsent message"
+        """
         
         while not done:
             self.keyState = k.input(self.keyPin)
