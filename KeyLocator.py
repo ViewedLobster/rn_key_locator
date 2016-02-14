@@ -105,6 +105,7 @@ class KeyLocator:
         done = False
 
         self.doSMS("hahaha")
+        print "sent message"
         
         while not done:
             self.keyState = k.input(self.keyPin)
