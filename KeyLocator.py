@@ -36,6 +36,7 @@ class KeyLocator:
         k.setup(self.keyPin, k.IN)
         k.setup(self.doorPin, k.IN)
 
+
         # An assortment of goods to be owed
         self.goodsList = ["bulle", "Guldkällan", "lap dance", "juice", "tårta", "crystal meth", "saft", "lurre till Jurre", "virre", "chirre", "rent mjöl, gärna i påse", "TeX:ad kanallista"]
         
@@ -52,7 +53,7 @@ class KeyLocator:
         self.lastDoorState = None
         
         self.emergency = None
-        self.emergencyFile = "emergencyTime.txt"
+        self.emergencyTime = None
         
         self.smsGood = "Källarnyckeln är åter på sin plats. Enligt min formel är du skyldig "
         self.smsGoodPt2 = " bulle"
@@ -65,7 +66,7 @@ class KeyLocator:
     def generateMessage(self):
         message = "Kom tillbaka med nyckeln, om den ej är tillbaka inom 10 minuter blir påföljden ett vite i form av "
         i = random.randrange(len(self.amountList));
-        message = message + self.amountList[i]
+        message = message + self.amountList[i] + "."
 
         i = random.randrange(len(self.goodsList))
         message = message + " " + self.goodsList[i]
@@ -115,16 +116,28 @@ class KeyLocator:
             self.keyState = k.input(self.keyPin)
             self.doorState = k.input(self.doorPin)
             
-            
+            if self.emergency and not self.emergencyTime == None:
+                if time.time() - self.emergencyTime > 10:
+                    message = "Tidsfristen har nu gått ut, och domen har vunnit laga kraft. Kom tillbaka med vitet eller inte alls. Domen kan ej överklagas."
+                    self.doSMS(message)
+                    self.emergencyTime = None
+
+
             
             k.output(self.ledPin, not self.keyState)
             if self.keyState != self.lastKeyState or self.doorState != self.lastDoorState:
                 
-                if self.emergency and self.keyState and not self.doorState:
+                if self.emergency and self.keyState and self.doorState:
+                    # Key is back and all is well
+                    message = "Nyckeln är återbördad."
+
+                    if not self.emergencyTime == None:
+                        message = message + " Du hann tillbaka innan tidsfristen och vi kan tänka oss se mellan fingrarna denna gång. Men, låt inte en prekär situation som denna uppstå igen!"
+                        self.emergencyTime = None
                     
+                    self.doSMS(message)
                     self.emergency = False
 
-                    # Key is back and all is well
 
                     """
                     f = open(self.emergencyFile, "r")
@@ -147,10 +160,11 @@ class KeyLocator:
                     """
                     
                     
-                elif not self.keyState and self.doorState:
+                elif not self.keyState and not self.doorState:
                     self.emergency = True
                     
                     # If door locked and key gone fishing
+                    self.emergencyTime = time.time()
                     
                     smsString = self.generateMessage()
                     self.doSMS(smsString)
