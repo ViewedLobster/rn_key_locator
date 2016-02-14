@@ -107,6 +107,8 @@ class KeyLocator:
         
         done = False
 
+        response = self.doCurl(self.keyState, self.doorState, self.emergency, "changed")
+
         """
         theMessage = self.generateMessage()
         print theMessage
