@@ -129,7 +129,7 @@ class KeyLocator:
             k.output(self.ledPin, not self.keyState)
             if self.keyState != self.lastKeyState or self.doorState != self.lastDoorState:
                 
-                if self.emergency and self.keyState and self.doorState:
+                if self.emergency and self.keyState and not self.doorState:
                     # Key is back and all is well
                     message = "Nyckeln är återbördad."
 
