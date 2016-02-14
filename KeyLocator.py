@@ -103,6 +103,8 @@ class KeyLocator:
         self.emergency = not self.keyState and self.doorState
         
         done = False
+
+        self.doSMS("hahaha")
         
         while not done:
             self.keyState = k.input(self.keyPin)
