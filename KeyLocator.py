@@ -38,9 +38,9 @@ class KeyLocator:
 
 
         # An assortment of goods to be owed
-        self.goodsList = ["bulle", "Guldkällan", "lap dance", "juice", "tårta", "crystal meth", "saft", "lurre till Jurre", "virre", "chirre", "rent mjöl, gärna i påse", "TeX:ad kanallista"]
+        self.goodsList = ["bulle", "Guldkällan", "lap dance", "juice", "tårta", "crystal meth", "saft", "lurre till Jurre", "virre", "chirre", "rent mjöl, gärna i påse", "TeX:ad kanallista",  "chirre med dirre"]
         
-        self.amountList = ["skälig mängd", "fyra dagsböter", "fem fotbollplaner", "fyrtio tusen miljarder", "33 cl", "1 kg"]
+        self.amountList = ["skälig mängd", "fyra dagsböter", "fem fotbollplaner", "fyrtio tusen miljarder", "33 cl", "1 kg", "ett tjog"]
         
         self.explanation = ["Straffet bestäms utifrån den misstänktes beräknade årsinkomst vid tidpunkten när straffet skall bestämmas. Med årsinkomst avses inkomst före skatt med avdrag för kostnader för inkomstens förvärvande. Som inkomst räknas också mer kontinuerligt utgående ersättning eller bidrag till den misstänkte. Det gäller till exempel arbetslöshetsersättning, ekonomiskt bistånd, studiebidrag, bostadsbidrag och underhållsbidrag.", 
                 "Den misstänktes egna uppgifter om sina ekonomiska förhållanden bör i allmänhet godtas. En kontroll bör dock göras om det finns anledning att anta att uppgifterna är felaktiga eller ofullständiga i en omfattning som kan antas påverka straffbeloppet.",
@@ -91,7 +91,8 @@ class KeyLocator:
         body = buffer.getvalue()
         self.lastTime = time.time()
         
-        return self.jsonDecoder.decode(body)
+        #return self.jsonDecoder.decode(body)
+        return True
     
     
     def main(self):
@@ -164,7 +165,7 @@ class KeyLocator:
                     """
                     
                     
-                elif not self.keyState and self.doorState:
+                elif not self.keyState and self.doorState and not self.emergency:
                     self.emergency = True
                     
                     # If door locked and key gone fishing
