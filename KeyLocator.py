@@ -44,7 +44,7 @@ class KeyLocator:
         
         self.explanation = ["Straffet bestäms utifrån den misstänktes beräknade årsinkomst vid tidpunkten när straffet skall bestämmas. Med årsinkomst avses inkomst före skatt med avdrag för kostnader för inkomstens förvärvande. Som inkomst räknas också mer kontinuerligt utgående ersättning eller bidrag till den misstänkte. Det gäller till exempel arbetslöshetsersättning, ekonomiskt bistånd, studiebidrag, bostadsbidrag och underhållsbidrag.", 
                 "Den misstänktes egna uppgifter om sina ekonomiska förhållanden bör i allmänhet godtas. En kontroll bör dock göras om det finns anledning att anta att uppgifterna är felaktiga eller ofullständiga i en omfattning som kan antas påverka straffbeloppet.",
-                "Straffets villkor varierar mellan olika nämnder. Anstalten RN ger möjlighet till arbete, utbildning, behandlingsprogram och annan verksamhet. Straff infördes hos RN under 1800-talet och anses bland annat minska risken för fängelsevåldtäkter"]
+                "Straffets villkor varierar mellan olika nämnder. Anstalten RN ger möjlighet till arbete, utbildning, behandlingsprogram och annan verksamhet. Straff infördes hos RN under 1800-talet och anses bland annat minska risken för nyckelkidnappningar."]
         
         self.keyState = None
         self.doorState = None
@@ -125,6 +125,7 @@ class KeyLocator:
                 if time.time() - self.emergencyTime > 600:
                     message = "Tidsfristen har nu gått ut, och domen har vunnit laga kraft. Kom tillbaka med vitet eller inte alls. Domen kan ej överklagas."
                     self.doSMS(message)
+                    self.doSlack(message)
                     self.emergencyTime = None
 
 
@@ -141,6 +142,7 @@ class KeyLocator:
                         self.emergencyTime = None
                     
                     self.doSMS(message)
+                    self.doSlack(message)
                     self.emergency = False
 
 
@@ -173,6 +175,7 @@ class KeyLocator:
                     
                     smsString = self.generateMessage()
                     self.doSMS(smsString)
+                    self.doSlack(smsString)
 
                     
                 response = self.doCurl(self.keyState, self.doorState, self.emergency, "changed")
@@ -222,6 +225,19 @@ class KeyLocator:
             logging.error(e.message)
         pycurl_connect.close()
        
+    def doSlack(self, text):
+
+        curl_obj = pycurl.Curl();
+        curl_obj.setopt(curl_obj.URL, 'https://hooks.slack.com/services/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')
+        curl_obj.setopt(curl_obj.POSTFIELDS, '{"text": "'+ text + '"}')
+        curl_obj.setopt(curl_obj.HTTPHEADER, 'Content-type: Application/json')
+        try:
+            curl_obj.perform()
+        except pycurl.error as e:
+            logging.error(e.message)
+
+        curl_obj.close()
+ 
     def switchLED(self, LEDState):
         k.output(self.pinLed, LEDState)
 
