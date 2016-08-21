@@ -230,7 +230,7 @@ class KeyLocator:
         curl_obj = pycurl.Curl();
         curl_obj.setopt(curl_obj.URL, 'https://hooks.slack.com/services/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')
         curl_obj.setopt(curl_obj.POSTFIELDS, '{"text": "'+ text + '"}')
-        curl_obj.setopt(curl_obj.HTTPHEADER, 'Content-type: Application/json')
+        curl_obj.setopt(curl_obj.HTTPHEADER, ['Content-type: Application/json'])
         try:
             curl_obj.perform()
         except pycurl.error as e:
