@@ -36,6 +36,10 @@ class KeyLocator:
         k.setup(self.keyPin, k.IN)
         k.setup(self.doorPin, k.IN)
 
+        self.bool_smsgrupp = False
+        self.bool_slack = True
+        self.slackurl = 'https://hooks.slack.com/services/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'
+
 
         # An assortment of goods to be owed
         self.goodsList = ["bulle", "Guldkällan", "lap dance", "juice", "tårta", "crystal meth", "saft", "lurre till Jurre", "virre", "chirre", "rent mjöl, gärna i påse", "TeX:ad kanallista",  "chirre med dirre"]
@@ -124,8 +128,12 @@ class KeyLocator:
             if self.emergency and not self.emergencyTime == None:
                 if time.time() - self.emergencyTime > 600:
                     message = "Tidsfristen har nu gått ut, och domen har vunnit laga kraft. Kom tillbaka med vitet eller inte alls. Domen kan ej överklagas."
-                    self.doSMS(message)
-                    self.doSlack(message)
+                    if self.bool_smsgrupp:
+                        self.doSMS(message)
+
+                    if self.bool_slack:
+                        self.doSlack(message)
+
                     self.emergencyTime = None
 
 
@@ -140,9 +148,14 @@ class KeyLocator:
                     if not self.emergencyTime == None:
                         message = message + " Du hann tillbaka innan tidsfristen och vi kan tänka oss se mellan fingrarna denna gång. Men, låt inte en prekär situation som denna uppstå igen!"
                         self.emergencyTime = None
-                    
-                    self.doSMS(message)
-                    self.doSlack(message)
+
+
+                    if self.bool_smsgrupp:
+                        self.doSMS(message)
+
+                    if self.bool_slack:
+                        self.doSlack(message)
+                   
                     self.emergency = False
 
 
@@ -174,8 +187,12 @@ class KeyLocator:
                     self.emergencyTime = time.time()
                     
                     smsString = self.generateMessage()
-                    self.doSMS(smsString)
-                    self.doSlack(smsString)
+
+                    if self.bool_smsgrupp:
+                        self.doSMS(message)
+
+                    if self.bool_slack:
+                        self.doSlack(message)
 
                     
                 response = self.doCurl(self.keyState, self.doorState, self.emergency, "changed")
@@ -228,7 +245,7 @@ class KeyLocator:
     def doSlack(self, text):
 
         curl_obj = pycurl.Curl();
-        curl_obj.setopt(curl_obj.URL, 'https://hooks.slack.com/services/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')
+        curl_obj.setopt(curl_obj.URL, self.slackurl)
         curl_obj.setopt(curl_obj.POSTFIELDS, '{"text": "'+ text + '"}')
         curl_obj.setopt(curl_obj.HTTPHEADER, ['Content-type: Application/json'])
         try:
