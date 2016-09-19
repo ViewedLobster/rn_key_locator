@@ -186,7 +186,7 @@ class KeyLocator:
                     # If door locked and key gone fishing
                     self.emergencyTime = time.time()
                     
-                    smsString = self.generateMessage()
+                    message = self.generateMessage()
 
                     if self.bool_smsgrupp:
                         self.doSMS(message)
