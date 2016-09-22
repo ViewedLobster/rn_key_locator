@@ -19,7 +19,7 @@ class KeyLocator:
     
     def __init__(self):
         
-        self.heartbeat_th = 3600 #Heartbeat threshold in ish seconds
+        self.heartbeat_th = 3600  #Heartbeat threshold in ish seconds
         self.smsEnabled = True
         
         self.heartbeat = 0 #Heartbeat timer
@@ -207,9 +207,9 @@ class KeyLocator:
             self.lastDoorState = self.doorState
             self.lastTime = time.time()
             
-            if(self.heartbeat => self.heartbeat_th):
-                response = self.doCurl(self.keyState, self.doorState, self.emergency, "ping")
-            
+            if(self.heartbeat >= self.heartbeat_th):
+                response = self.doCurl(self.keyState, self.doorState, self.emergency, "heartbeat")
+            self.heartbeat+=1 
             
             time.sleep(1)
             
