@@ -19,8 +19,10 @@ class KeyLocator:
     
     def __init__(self):
         
+        self.heartbeat_th = 3600 #Heartbeat threshold in ish seconds
         self.smsEnabled = True
         
+        self.heartbeat = 0 #Heartbeat timer
         self.lastTime = None
 
         self.jsonDecoder = json.JSONDecoder()
@@ -81,6 +83,7 @@ class KeyLocator:
         return message
     
     def doCurl(self, keyValue = -1, doorValue = -1, emergencyState = -1, messageType = "ping", format = 'json'):
+        self.heartbeat = 0 #Reset heartbeat timer
         buffer = StringIO()
         c = pycurl.Curl()
         address = 'http://rneventteknik.se/stage/io/key.php?key='+str(keyValue)+"&door="+str(doorValue)+"&emergency="+str(int(emergencyState))+"&msgType="+str(messageType)+"&format=" + str(format)+ "&checksum=" + self.checksum
@@ -203,6 +206,10 @@ class KeyLocator:
             self.lastKeyState = self.keyState
             self.lastDoorState = self.doorState
             self.lastTime = time.time()
+            
+            if(self.heartbeat => self.heartbeat_th):
+                response = self.doCurl(self.keyState, self.doorState, self.emergency, "ping")
+            
             
             time.sleep(1)
             
