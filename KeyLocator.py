@@ -40,7 +40,7 @@ class KeyLocator:
 
         self.bool_smsgrupp = False
         self.bool_slack = True
-        self.slackurl = 'https://hooks.slack.com/services/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'
+        self.slackurl = '<webhook_url>'
 
 
         # An assortment of goods to be owed
@@ -67,7 +67,7 @@ class KeyLocator:
         
         
         # Hahaha, much secure
-        self.checksum = "67fgd83kdn3249f34nnjf27d2lmkcds"
+        self.checksum = "the secret checksum"
     
     def generateMessage(self):
         message = "Kom tillbaka med nyckeln, om den ej är tillbaka inom 10 minuter blir påföljden ett vite i form av "
